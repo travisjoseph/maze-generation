@@ -9,7 +9,6 @@ class Cell{
     }
   
     show(){
-        // stroke(247, 82, 0);
     
         var x = this.i*w;
         var y = this.j*w;
@@ -31,35 +30,38 @@ class Cell{
             line(x, y, x+w, y);
         }
 
-        if(this.walls[1]){
+        if(this.walls[1]){             //RIGHT
             strokeWeight(1);
             stroke(247, 82, 0);
-            line(x+w, y, x+w, y+w); //RIGHT
+            line(x+w, y, x+w, y+w); 
         } else {
             noStroke();
-            line(x+w, y, x+w, y+w); //RIGHT
+            line(x+w, y, x+w, y+w); 
         }
 
-        if(this.walls[2]){
+        if(this.walls[2]){              //BOTTOM
             strokeWeight(1);
             stroke(247, 82, 0);
-            line(x+w, y+w, x, y+w); //BOTTOM
+            line(x+w, y+w, x, y+w); 
         } else {
             noStroke();
-            line(x+w, y+w, x, y+w); //BOTTOM
+            line(x+w, y+w, x, y+w);
         }
 
-        if(this.walls[3]){
+        if(this.walls[3]){              //LEFT
             strokeWeight(1);
             stroke(247, 82, 0);
-            line(x, y+w, x, y);  //LEFT
+            line(x, y+w, x, y);  
         } else {
             noStroke();
-            line(x, y+w, x, y);  //LEFT
+            line(x, y+w, x, y);  
         }
     }
 
     breakWall(prevCell){
+
+        //1/-1 indicates a left/right movement 
+        //cols/-cols indicates an up/down movement.
         var thisIndex = this.getIndex(this.i, this.j);
         var prevIndex = this.getIndex(prevCell.i, prevCell.j);
         var whichWall = thisIndex - prevIndex;
@@ -126,7 +128,7 @@ class Cell{
 
     getRandomNeighbour(){
         var randomNeighbour = this.neighbours[floor(random(0, this.neighbours.length))];
-        this.neighbours.splice(randomNeighbour, 1);
+        this.neighbours.splice(this.neighbours.indexOf(randomNeighbour), 1);
         return randomNeighbour;
     }
   }

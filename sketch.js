@@ -18,8 +18,8 @@ function setup() {
 }
 
 function draw() {
-  background(67);
-  frameRate(10);
+  background(70);
+  frameRate(5);
 
   // https://en.wikipedia.org/wiki/Maze_generation_algorithm
   // Make the initial cell the current cell and mark it as visited
@@ -35,16 +35,16 @@ function draw() {
   
   if (currentCell.index != grid.length-1) {
     currentCell.findNeighbours();
-    console.log(currentCell);
-    
     if(currentCell.getNumNeighbours() > 0){
       var nextCellIndex = currentCell.getRandomNeighbour();
       stack.push(currentCell);
       currentCell.breakWall(grid[nextCellIndex]);
       grid[nextCellIndex].setVisited();
+      grid[nextCellIndex].setCurrentCell();
       currentCell = grid[nextCellIndex];
     } else if (stack.length > 0) {
       currentCell = stack[stack.length-1]
+      currentCell.setCurrentCell();
       stack.pop();
     }  
   }
@@ -52,4 +52,5 @@ function draw() {
   for(let i=0; i<grid.length; i++){
     grid[i].show(w);
   }
+  currentCell.setNotCurrentCell();
 }

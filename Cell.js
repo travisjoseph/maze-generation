@@ -22,8 +22,9 @@ class Cell{
             var y = this.j*w;
             rect(x, y, w, w);
         }
+
         if (this.currentCell == true){
-            fill(244, 134, 66, 200);
+            fill(244, 134, 66, 150);
             noStroke();
             var x = this.i*w;
             var y = this.j*w;
@@ -143,11 +144,11 @@ class Cell{
         return this.neighbours.length;
     }
 
-    // setCurrentCell(){
-    //     this.currentCell = true;
-    // }
+     setCurrentCell(){
+         this.currentCell = true;
+     }
 
-    // setNotCurrentCell(){
-    //     this.currentCell = false;
-    // }
+    setNotCurrentCell(){
+        this.currentCell = false;
+    }
 }
